@@ -4,3 +4,4 @@ node_modules
 build
 .chunky
 package-lock.json
+.env
