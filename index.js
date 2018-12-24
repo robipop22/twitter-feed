@@ -15,11 +15,24 @@ var client = new Twitter({
 })
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+  // Website you wish to allow to connect
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'http://localhost:8082',
+    'https://robipop.io'
   )
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET')
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true)
+
+  // Pass to next layer of middleware
   next()
 })
 
