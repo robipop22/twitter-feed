@@ -4,12 +4,27 @@
   "description": "using twitter package to get feeds",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "8.11.4"
+  },
+  "now": {
+    "engines": {
+      "node": "8.11.4"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robipop22/twitter-feed.git"
   },
   "author": "Robert Pop",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
+    "express": "^4.16.4",
     "twitter": "^1.7.1"
   }
 }
