@@ -5,3 +5,4 @@ build
 .chunky
 package-lock.json
 .env
+now.json
