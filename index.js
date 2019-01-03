@@ -6,8 +6,8 @@ const port = 8000
 
 require('now-env')
 
-var Twitter = require('twitter')
-var client = new Twitter({
+const Twitter = require('twitter')
+const client = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
@@ -16,11 +16,11 @@ var client = new Twitter({
 
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader(
-    'Access-Control-Allow-Origin',
-    'http://localhost:8082',
-    'https://robipop.io'
-  )
+  const allowedOrigins = ['http://localhost:8082', 'https://robipop.io']
+  const origin = req.headers.origin
+  if (allowedOrigins.indexOf(origin) > -1) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET')
@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json())
 
 app.get('/timeline', (req, res) => {
-  var params = { user_id: req.query.user_id }
+  const params = { user_id: req.query.user_id, count: req.query.count }
 
   client.get('statuses/user_timeline', params, function(
     error,
